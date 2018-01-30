@@ -254,3 +254,28 @@ This warning is visible only on development and totally harmless. This occurs to
 
 ## License
 MERN is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+
+#MORE 
+
+### Config Vitural Host Nginx (HuyNguyen) not include PM2 
+--create file domain (dev.mernapp) in /etc/nginx/sites-available
+--content : 
+
+    server {
+        listen 80;
+    
+        server_name api.mydomain.com;
+    
+        location / {
+            proxy_pass http://localhost:8090;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+         }
+    }
+    
+-- symslink ln -s /etc/nginx/sites-enabled/domain /etc/nginx/sites-available/domain
+-- config host : 127.0.0.1 domain
+-- restart ngnix
