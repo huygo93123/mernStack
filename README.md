@@ -279,3 +279,7 @@ MERN is released under the [MIT License](http://www.opensource.org/licenses/MIT)
 -- symslink ln -s /etc/nginx/sites-enabled/domain /etc/nginx/sites-available/domain
 -- config host : 127.0.0.1 domain
 -- restart ngnix
+
+#### start mongdb with system
+sudo systemctl enable mongod.service
+
