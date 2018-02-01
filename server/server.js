@@ -37,6 +37,7 @@ import Helmet from 'react-helmet';
 import routes from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
 import posts from './routes/post.routes';
+import techlist from './routes/techlist.router';
 import dummyData from './dummyData';
 import serverConfig from './config';
 
@@ -59,7 +60,8 @@ app.use(compression());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist/client')));
-app.use('/api', posts);
+app.use('/api', [posts, techlist]);
+
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {
@@ -88,7 +90,7 @@ const renderFullPage = (html, initialState) => {
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
           ${isProdMode ?
-          `//<![CDATA[
+    `//<![CDATA[
           window.webpackManifest = ${JSON.stringify(chunkManifest)};
           //]]>` : ''}
         </script>
@@ -110,7 +112,8 @@ const renderError = err => {
 app.use((req, res, next) => {
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
-      return res.status(500).end(renderError(err));
+      return res.status(500)
+        .end(renderError(err));
     }
 
     if (redirectLocation) {
@@ -130,7 +133,7 @@ app.use((req, res, next) => {
             <IntlWrapper>
               <RouterContext {...renderProps} />
             </IntlWrapper>
-          </Provider>
+          </Provider>,
         );
         const finalState = store.getState();
 
