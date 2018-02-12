@@ -13,7 +13,7 @@ import routes from './routes';
 require('./main.css');
 
 export default function App(props) {
-  return (
+    return (
     <Provider store={props.store}>
       <IntlWrapper>
         <Router history={browserHistory}>
@@ -25,5 +25,5 @@ export default function App(props) {
 }
 
 App.propTypes = {
-  store: React.PropTypes.object.isRequired,
+    store: React.PropTypes.object.isRequired,
 };

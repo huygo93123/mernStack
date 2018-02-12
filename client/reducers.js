@@ -11,8 +11,8 @@ import techlist from './modules/TechList/TechReducer';
 
 // Combine all reducers into one root reducer
 export default combineReducers({
-  app,
-  posts,
-  intl,
-  techlist,
+    app,
+    posts,
+    intl,
+    techlist,
 });

@@ -6,11 +6,11 @@ import { FormattedMessage } from 'react-intl';
 import styles from './Header.css';
 
 export function Header(props, context) {
-  const languageNodes = props.intl.enabledLanguages.map(
+    const languageNodes = props.intl.enabledLanguages.map(
     lang => <li key={lang} onClick={() => props.switchLanguage(lang)} className={lang === props.intl.locale ? styles.selected : ''}>{lang}</li>
   );
 
-  return (
+    return (
     <div className={styles.header}>
       <div className={styles['language-switcher']}>
         <ul>
@@ -33,13 +33,13 @@ export function Header(props, context) {
 }
 
 Header.contextTypes = {
-  router: React.PropTypes.object,
+    router: React.PropTypes.object,
 };
 
 Header.propTypes = {
-  toggleAddPost: PropTypes.func.isRequired,
-  switchLanguage: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
+    toggleAddPost: PropTypes.func.isRequired,
+    switchLanguage: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
 };
 
 export default Header;

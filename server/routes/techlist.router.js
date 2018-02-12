@@ -3,18 +3,18 @@ import * as TechListController from '../controllers/techlist.controller';
 const router = new Router();
 
 // Get all Posts
-router.route('/techlist').get(TechListController.getPosts);
+router.route('/techlist').get(TechListController.getTechs);
 
 // Get one post by cuid
-router.route('/techlist/:cuid').get(TechListController.getPost);
+router.route('/techlist/:cuid').get(TechListController.getTech);
 
 // Add a new Post
-router.route('/techlist').post(TechListController.addPost);
+router.route('/techlist').post(TechListController.addTech);
 
 // Delete a post by cuid
-router.route('/techlist/:cuid').delete(TechListController.deletePost);
+router.route('/techlist/:cuid').delete(TechListController.deleteTech);
 
 // Edit a post by cuid
-router.route('/techlist/:cuid').patch(TechListController.deletePost);
+router.route('/techlist/:cuid').patch(TechListController.updateTech);
 
 export default router;

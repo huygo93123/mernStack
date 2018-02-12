@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import Express from 'express';
 import compression from 'compression';
 import mongoose from 'mongoose';

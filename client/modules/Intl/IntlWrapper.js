@@ -3,7 +3,7 @@ import { IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
 
 export function IntlWrapper(props) {
-  return (
+    return (
     <IntlProvider {...props.intl} >
       {props.children}
     </IntlProvider>
@@ -11,15 +11,15 @@ export function IntlWrapper(props) {
 }
 
 IntlWrapper.propTypes = {
-  children: PropTypes.element.isRequired,
-  intl: PropTypes.object.isRequired,
+    children: PropTypes.element.isRequired,
+    intl: PropTypes.object.isRequired,
 };
 
 // Retrieve data from store as props
 function mapStateToProps(store) {
-  return {
-    intl: store.intl,
-  };
+    return {
+        intl: store.intl,
+    };
 }
 
 export default connect(mapStateToProps)(IntlWrapper);

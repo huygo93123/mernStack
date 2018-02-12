@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
 
 // Import Components
-import PostListItem from './PostListItem/PostListItem';
+import TechListItem from './TechListItem/TechItem';
 
-function PostList(props) {
-  return (
+function TechList(props) {
+    return (
     <div className="listView">
       {
         props.posts.map(post => (
-          <PostListItem
+          <TechListItem
             post={post}
             key={post.cuid}
             onDelete={() => props.handleDeletePost(post.cuid)}
@@ -19,15 +19,15 @@ function PostList(props) {
   );
 }
 
-PostList.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    cuid: PropTypes.string.isRequired,
-  })).isRequired,
-  handleDeletePost: PropTypes.func.isRequired,
+TechList.propTypes = {
+    posts: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        content: PropTypes.string.isRequired,
+        slug: PropTypes.string.isRequired,
+        cuid: PropTypes.string.isRequired,
+    })).isRequired,
+    handleDeletePost: PropTypes.func.isRequired,
 };
 
-export default PostList;
+export default TechList;
