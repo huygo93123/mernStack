@@ -1,4 +1,4 @@
-import { ADD_TECH, GET_TECHS, DELETE_TECH } from './TechAction';
+import { ADD_TECH, ADD_TECHS, DELETE_TECH, UPDATE_TECH } from './TechAction';
 
 // Initial State
 const initialState = { data: [] };
@@ -6,7 +6,7 @@ const initialState = { data: [] };
 const TechReducer = (state = initialState, action) => {
     switch (action.type) {
 
-    case GET_TECHS :
+    case ADD_TECHS :
         return {
             data: action.posts,
         };
@@ -21,6 +21,11 @@ const TechReducer = (state = initialState, action) => {
             data: state.data.filter(post => post.cuid !== action.cuid),
         };
 
+    case UPDATE_TECH :
+        return {
+            data: action.posts,
+        };
+
     default:
         return state;
     }
@@ -29,10 +34,13 @@ const TechReducer = (state = initialState, action) => {
 /* Selectors */
 
 // Get all posts
-export const getPosts = state => state.posts.data;
+export const getTechs = (state) => {
+    console.log(state.techs.data);
+    state.techs.data;
+}
 
 // Get post by cuid
-export const getPost = (state, cuid) => state.posts.data.filter(post => post.cuid === cuid)[0];
+export const getTech = (state, cuid) => state.posts.data.filter(post => post.cuid === cuid)[0];
 
 // Export Reducer
 export default TechReducer;

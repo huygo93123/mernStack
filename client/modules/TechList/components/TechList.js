@@ -7,20 +7,20 @@ function TechList(props) {
     return (
     <div className="listView">
       {
-        props.posts.map(post => (
-          <TechListItem
-            post={post}
-            key={post.cuid}
-            onDelete={() => props.handleDeletePost(post.cuid)}
-          />
-        ))
+          props.techs.map(post => (
+              <TechListItem
+                  post={post}
+                  key={post.cuid}
+                  onDelete={() => props.handleDeletePost(post.cuid)}
+              />
+          ))
       }
     </div>
   );
 }
 
 TechList.propTypes = {
-    posts: PropTypes.arrayOf(PropTypes.shape({
+    techs: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,

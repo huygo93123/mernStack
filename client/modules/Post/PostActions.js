@@ -35,6 +35,7 @@ export function addPosts(posts) {
 export function fetchPosts() {
     return (dispatch) => {
         return callApi('posts').then(res => {
+            console.log(res.posts);
             dispatch(addPosts(res.posts));
         });
     };
@@ -42,7 +43,10 @@ export function fetchPosts() {
 
 export function fetchPost(cuid) {
     return (dispatch) => {
-        return callApi(`posts/${cuid}`).then(res => dispatch(addPost(res.post)));
+        return callApi(`posts/${cuid}`).then(
+
+            res => dispatch(addPost(res.post)
+            ));
     };
 }
 

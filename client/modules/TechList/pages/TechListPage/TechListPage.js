@@ -3,55 +3,59 @@ import { connect } from 'react-redux';
 
 // Import Components
 import TechList from '../../components/TechList';
-import PostCreateWidget from '../../components/PostCreateWidget/PostCreateWidget';
+import TechCreatForm from '../../components/TechCreateForm/TechCreatForm';
 
 // Import Actions
-import { addPostRequest, fetchPosts, deletePostRequest } from '../../PostActions';
+import { addTechRequest, fetchTechs, deleteTechRequest } from '../../TechAction';
 import { toggleAddPost } from '../../../App/AppActions';
 
 // Import Selectors
 import { getShowAddPost } from '../../../App/AppReducer';
-import { getPosts } from '../../PostReducer';
+import { getTechs } from '../../TechReducer';
 
 class TechListPage extends Component {
     componentDidMount() {
-        this.props.dispatch(fetchPosts());
+        // console.log("component did mount");
+        // this.props.dispatch(fetchTechs());
     }
 
     handleDeletePost = post => {
         if (confirm('Do you want to delete this post')) { // eslint-disable-line
-            this.props.dispatch(deletePostRequest(post));
+            this.props.dispatch(deleteTechRequest(post));
         }
     };
 
     handleAddPost = (name, title, content) => {
-        this.props.dispatch(toggleAddPost());
-        this.props.dispatch(addPostRequest({ name, title, content }));
+        // this.props.dispatch(toggleAddPost());
+        this.props.dispatch(addTechRequest({ name, title, content }));
     };
 
     render() {
+        console.log(this.props.techs);
         return (
             <div>
-                <PostCreateWidget addPost={this.handleAddPost} showAddPost={this.props.showAddPost} />
-                <TechList handleDeletePost={this.handleDeletePost} posts={this.props.posts} />
+                <TechCreatForm addPost={this.handleAddPost} />
+                {/*<TechList handleDeletePost={this.handleDeletePost} posts={this.props.techs} />*/}
             </div>
         );
     }
 }
 
 // Actions required to provide data for this component to render in sever side.
-TechListPage.need = [() => { return fetchPosts(); }];
+TechListPage.need = [() => {
+    return fetchTechs();
+}];
 
 // Retrieve data from store as props
 function mapStateToProps(state) {
     return {
         showAddPost: getShowAddPost(state),
-        posts: getPosts(state),
+        techs: getTechs(state),
     };
 }
 
 TechListPage.propTypes = {
-    posts: PropTypes.arrayOf(PropTypes.shape({
+    techs: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,

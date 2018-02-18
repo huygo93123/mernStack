@@ -2,47 +2,49 @@ import callApi from '../../util/apiCaller';
 
 // Export Constants
 export const ADD_TECH = 'ADD_TECH';
-export const GET_TECHS = 'GET_TECHS';
+export const ADD_TECHS = 'ADD_TECHS';
 export const DELETE_TECH = 'DELETE_TECH';
+export const UPDATE_TECH = 'UPDATE_TECH';
 
 // Export Actions
-export function addPost(post) {
+export function addTech(tech) {
     return {
         type: ADD_TECH,
-        post,
+        tech,
     };
 }
 
-export function addPostRequest(post) {
+export function addTechRequest(tech) {
     return (dispatch) => {
-        return callApi('posts', 'post', {
+        return callApi('techlist', 'post', {
             post: {
-                name: post.name,
-                title: post.title,
-                content: post.content,
+                name: tech.name,
+                title: tech.title,
+                content: tech.content,
             },
-        }).then(res => dispatch(addPost(res.post)));
+        }).then(res => dispatch(addTech(res.post)));
     };
 }
 
-export function getPosts(posts) {
+export function addTechs(techs) {
     return {
-        type: GET_TECHS,
-        posts,
+        type: ADD_TECHS,
+        techs,
     };
 }
 
-export function fetchPosts() {
+export function fetchTechs() {
     return (dispatch) => {
-        return callApi('posts').then(res => {
-            dispatch(getPosts(res.posts));
+        return callApi('techlist').then(res => {
+            console.log(res.techs);
+            dispatch(addTechs(res.techs));
         });
     };
 }
 
-export function fetchPost(cuid) {
+export function fetchTech(cuid) {
     return (dispatch) => {
-        return callApi(`posts/${cuid}`).then(res => dispatch(addPost(res.post)));
+        return callApi(`techlist/${cuid}`).then(res => dispatch(addTech(res.post)));
     };
 }
 
@@ -53,8 +55,27 @@ export function deletePost(cuid) {
     };
 }
 
-export function deletePostRequest(cuid) {
+export function deleteTechRequest(cuid) {
     return (dispatch) => {
-        return callApi(`posts/${cuid}`, 'delete').then(() => dispatch(deletePost(cuid)));
+        return callApi(`techlist/${cuid}`, 'delete').then(() => dispatch(deletePost(cuid)));
+    };
+}
+
+export function updateTech(tech) {
+    return {
+        type: UPDATE_TECH,
+        tech,
+    };
+}
+
+export function updateTechRequest(tech) {
+    return (dispatch) => {
+        return callApi('techlist', 'post', {
+            post: {
+                name: tech.name,
+                title: tech.title,
+                content: tech.content,
+            },
+        }).then(res => dispatch(updateTech(res.post)));
     };
 }

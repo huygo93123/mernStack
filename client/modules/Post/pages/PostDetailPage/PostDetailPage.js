@@ -26,6 +26,7 @@ export function PostDetailPage(props) {
 }
 
 // Actions required to provide data for this component to render in server side.
+// call to store push data into finalState in server/server.js
 PostDetailPage.need = [params => {
     return fetchPost(params.cuid);
 }];

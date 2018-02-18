@@ -9,7 +9,6 @@ export function Header(props, context) {
     const languageNodes = props.intl.enabledLanguages.map(
     lang => <li key={lang} onClick={() => props.switchLanguage(lang)} className={lang === props.intl.locale ? styles.selected : ''}>{lang}</li>
   );
-
     return (
     <div className={styles.header}>
       <div className={styles['language-switcher']}>
@@ -23,7 +22,7 @@ export function Header(props, context) {
           <Link to="/" ><FormattedMessage id="siteTitle" /></Link>
         </h1>
         {
-          context.router.isActive('/', true)
+              context.router.isActive('/', true)
             ? <a className={styles['add-post-button']} href="#" onClick={props.toggleAddPost}><FormattedMessage id="addPost" /></a>
             : null
         }
@@ -33,7 +32,7 @@ export function Header(props, context) {
 }
 
 Header.contextTypes = {
-    router: React.PropTypes.object,
+    router: React.PropTypes.object
 };
 
 Header.propTypes = {
