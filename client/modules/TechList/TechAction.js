@@ -36,7 +36,6 @@ export function addTechs(techs) {
 export function fetchTechs() {
     return (dispatch) => {
         return callApi('techlist').then(res => {
-            console.log(res.techs);
             dispatch(addTechs(res.techs));
         });
     };
@@ -44,7 +43,7 @@ export function fetchTechs() {
 
 export function fetchTech(cuid) {
     return (dispatch) => {
-        return callApi(`techlist/${cuid}`).then(res => dispatch(addTech(res.post)));
+        return callApi(`techlist/${cuid}`).then(res => dispatch(addTech(res.tech)));
     };
 }
 

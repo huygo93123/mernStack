@@ -9,7 +9,7 @@ function TechListItem(props) {
     return (
         <div className={styles['single-post']}>
             <h3 className={styles['post-title']}>
-                <Link to={`/techs/${props.tech.slug}-${props.tech.cuid}`} >
+                <Link to={`/tech/${props.tech.slug}-${props.tech.cuid}`} >
                     {props.tech.title}
                 </Link>
             </h3>

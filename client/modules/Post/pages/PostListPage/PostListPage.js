@@ -15,7 +15,7 @@ import { getPosts } from '../../PostReducer';
 
 class PostListPage extends Component {
     componentDidMount() {
-    // this.props.dispatch(fetchPosts());
+        this.props.dispatch(fetchPosts());
     }
 
     handleDeletePost = post => {

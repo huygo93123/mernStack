@@ -7,11 +7,11 @@ function TechList(props) {
     return (
     <div className="listView">
       {
-          props.techs.map(post => (
+          props.techs.map(tech => (
               <TechListItem
-                  post={post}
-                  key={post.cuid}
-                  onDelete={() => props.handleDeletePost(post.cuid)}
+                  tech={tech}
+                  key={tech.cuid}
+                  onDelete={() => props.handleDeletePost(tech.cuid)}
               />
           ))
       }

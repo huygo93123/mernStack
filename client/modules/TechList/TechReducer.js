@@ -8,12 +8,12 @@ const TechReducer = (state = initialState, action) => {
 
     case ADD_TECHS :
         return {
-            data: action.posts,
+            data: action.techs,
         };
 
     case ADD_TECH :
         return {
-            data: [action.post, ...state.data],
+            data: [action.tech, ...state.data],
         };
 
     case DELETE_TECH :
@@ -34,13 +34,10 @@ const TechReducer = (state = initialState, action) => {
 /* Selectors */
 
 // Get all posts
-export const getTechs = (state) => {
-    console.log(state.techs.data);
-    state.techs.data;
-}
+export const getTechs = state => state.techs.data;
 
 // Get post by cuid
-export const getTech = (state, cuid) => state.posts.data.filter(post => post.cuid === cuid)[0];
+export const getTech = (state, cuid) => state.techs.data.filter(post => post.cuid === cuid)[0];
 
 // Export Reducer
 export default TechReducer;

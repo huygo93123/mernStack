@@ -14,9 +14,15 @@ import { getShowAddPost } from '../../../App/AppReducer';
 import { getTechs } from '../../TechReducer';
 
 class TechListPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { showAddPost: false };
+
+        this.handleShowAddPost = this.handleShowAddPost.bind(this);
+    }
+
     componentDidMount() {
-        // console.log("component did mount");
-        // this.props.dispatch(fetchTechs());
+        this.props.dispatch(fetchTechs());
     }
 
     handleDeletePost = post => {
@@ -26,16 +32,24 @@ class TechListPage extends Component {
     };
 
     handleAddPost = (name, title, content) => {
-        // this.props.dispatch(toggleAddPost());
+        this.setState(prevState => ({
+            showAddPost: !prevState.showAddPost
+        }));
         this.props.dispatch(addTechRequest({ name, title, content }));
     };
 
+    handleShowAddPost = () => {
+        this.setState(prevState => ({
+            showAddPost: !prevState.showAddPost
+        }));
+    }
+
     render() {
-        console.log(this.props.techs);
         return (
             <div>
-                <TechCreatForm addPost={this.handleAddPost} />
-                {/*<TechList handleDeletePost={this.handleDeletePost} posts={this.props.techs} />*/}
+                <button onClick={this.handleShowAddPost}>Add</button>
+                {this.state.showAddPost ? <TechCreatForm addPost={this.handleAddPost} /> : null}
+                <TechList handleDeletePost={this.handleDeletePost} techs={this.props.techs} />
             </div>
         );
     }
@@ -49,7 +63,6 @@ TechListPage.need = [() => {
 // Retrieve data from store as props
 function mapStateToProps(state) {
     return {
-        showAddPost: getShowAddPost(state),
         techs: getTechs(state),
     };
 }
@@ -60,7 +73,6 @@ TechListPage.propTypes = {
         title: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
     })).isRequired,
-    showAddPost: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired,
 };
 
