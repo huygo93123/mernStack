@@ -69,12 +69,11 @@ export function updateTech(tech) {
 
 export function updateTechRequest(tech) {
     return (dispatch) => {
-        return callApi('techlist', 'post', {
+        return callApi('techlist', 'put', {
             post: {
-                name: tech.name,
-                title: tech.title,
+                cuid: tech.cuid,
                 content: tech.content,
             },
-        }).then(res => dispatch(updateTech(res.post)));
+        }).then(dispatch(updateTech(tech)));
     };
 }

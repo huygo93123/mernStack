@@ -23,7 +23,7 @@ const TechReducer = (state = initialState, action) => {
 
     case UPDATE_TECH :
         return {
-            data: action.posts,
+            data: [action.tech, ...state.data],
         };
 
     default:

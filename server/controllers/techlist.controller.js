@@ -87,13 +87,11 @@ export function deleteTech(req, res) {
 */
 
 export function updateTech(req, res) {
-    Tech.findOne({ cuid: req.params.cuid }).exec((err, tech) => {
+    Tech.findOne({ cuid: req.body.post.cuid }).exec((err, tech) => {
         if (err) {
             res.status(500).send(err);
         }
 
-        tech.remove(() => {
-            res.status(200).end();
-        });
+        console.log(tech);
     });
 }

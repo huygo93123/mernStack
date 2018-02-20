@@ -15,6 +15,6 @@ router.route('/techlist').post(TechListController.addTech);
 router.route('/techlist/:cuid').delete(TechListController.deleteTech);
 
 // Edit a post by cuid
-router.route('/techlist/:cuid').patch(TechListController.updateTech);
+router.route('/techlist').put(TechListController.updateTech);
 
 export default router;
