@@ -50,6 +50,14 @@ export default (
       }}
     />
     <Route
+        path="/tech/edit/:cuid"
+        getComponent={(nextState, cb) => {
+            require.ensure([], require => {
+                cb(null, require('./modules/TechList/pages/TechEditPage/TechEditPage').default);
+            });
+        }}
+    />
+    <Route
       path="/tech/:slug-:cuid"
       getComponent={(nextState, cb) => {
           require.ensure([], require => {

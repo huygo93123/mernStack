@@ -14,60 +14,17 @@ import { getTech } from '../../TechReducer';
 
 class PostDetailPage extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            showUpdateTech: false,
-        };
-        this.toogleShowUpdate = this.toogleShowUpdate.bind(this);
-        this.handleUpdate = this.handleUpdate.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.state.content = '';
-    }
-
-
-    toogleShowUpdate() {
-        this.setState({ showUpdateTech: true });
-    }
-
-    handleUpdate(cuid) {
-        const content = this.state.content;
-        this.props.dispatch(updateTechRequest({ cuid, content }));
-        // this.setState(prevState => ({
-        //     showUpdateTech: !prevState.showUpdateTech,
-        // }));
-    }
-
-    handleChange(event) {
-        this.setState({ value: event.target.value });
-    }
-
     render() {
-        if (this.state.showUpdateTech) {
-            return (
-                <div>
-                    <Helmet title={this.props.tech.title} />
-                    <div className={`${styles['single-post']} ${styles['post-detail']}`}>
-                        <h3 className={styles['post-title']}>{this.props.tech.title}</h3>
-                        <p className={styles['author-name']}><FormattedMessage id="by" /> {this.props.tech.name}</p>
-                        <textarea value={this.props.tech.content} onChange={this.handleChange} />
-                    </div>
-                    <button onClick={this.handleUpdate(this.props.tech.cuid)}>Update</button>
+        return (
+            <div>
+                <Helmet title={this.props.tech.title} />
+                <div className={`${styles['single-post']} ${styles['post-detail']}`}>
+                    <h3 className={styles['post-title']}>{this.props.tech.title}</h3>
+                    <p className={styles['author-name']}><FormattedMessage id="by" /> {this.props.tech.name}</p>
+                    <p className={styles['post-desc']}>{this.props.tech.content}</p>
                 </div>
-            );
-        } else {
-            return (
-                <div>
-                    <Helmet title={this.props.tech.title} />
-                    <div className={`${styles['single-post']} ${styles['post-detail']}`}>
-                        <h3 className={styles['post-title']}>{this.props.tech.title}</h3>
-                        <p className={styles['author-name']}><FormattedMessage id="by" /> {this.props.tech.name}</p>
-                        <p className={styles['post-desc']}>{this.props.tech.content}</p>
-                    </div>
-                    <button onClick={this.toogleShowUpdate}>Edit</button>
-                </div>
-            );
-        }
+            </div>
+        );
     }
 }
 

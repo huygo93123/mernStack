@@ -15,7 +15,8 @@ import { getPosts } from '../../PostReducer';
 
 class PostListPage extends Component {
     componentDidMount() {
-        this.props.dispatch(fetchPosts());
+        // console.log(this.props.posts);
+        // this.props.dispatch(fetchPosts());
     }
 
     handleDeletePost = post => {
@@ -44,6 +45,7 @@ PostListPage.need = [() => { return fetchPosts(); }];
 
 // Retrieve data from store as props
 function mapStateToProps(state) {
+    console.log(state);
     return {
         showAddPost: getShowAddPost(state),
         posts: getPosts(state),

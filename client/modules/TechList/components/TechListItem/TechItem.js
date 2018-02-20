@@ -15,7 +15,12 @@ function TechListItem(props) {
             </h3>
             <p className={styles['author-name']}><FormattedMessage id="by" /> {props.tech.name}</p>
             <p className={styles['post-desc']}>{props.tech.content}</p>
-            <p className={styles['post-action']}><a href="#" onClick={props.onDelete}><FormattedMessage id="deletePost" /></a></p>
+            <p className={styles['post-action']}><a href="#" onClick={props.onDelete}><FormattedMessage id="deleteTech" /></a></p>
+            <p className={styles['post-action']}>
+                <Link to={`/tech/edit/${props.tech.cuid}`} >
+                    <FormattedMessage id="updateTech" />
+                </Link>
+            </p>
             <hr className={styles.divider} />
         </div>
     );

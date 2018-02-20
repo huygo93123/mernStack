@@ -74,6 +74,7 @@ export function updateTechRequest(tech) {
                 cuid: tech.cuid,
                 content: tech.content,
             },
-        }).then(dispatch(updateTech(tech)));
+        }).then(
+            dispatch(updateTech(tech)));
     };
 }

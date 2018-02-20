@@ -27,5 +27,8 @@ export default {
   		  =1 {has # comment}
   		  other {has # comments}
   		} as of {date} (in real app this would be translated to French)`,
+        updateTech: 'Chỉnh sửa Tech',
+        deleteTech: 'Xóa Tech',
+        saveTech: 'Lưu Tech',
     },
 };
